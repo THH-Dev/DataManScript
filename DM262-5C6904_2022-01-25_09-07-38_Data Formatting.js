@@ -12,7 +12,6 @@ function onResult (decodeResults, readerProperties, output)
 	{
 		
         //Kiểm tra xem mã code mà DataMan đọc về có giống master_code hay không?
-		var is_equal = false;
 		var is_equal = decodeResults[0].content === master_code;
 		
 
