@@ -25,7 +25,8 @@ function onResult (decodeResults, readerProperties, output)
 		else
 		{
 			output.events.system = ng_event_output;
-			output.content = ng_code;
+			//output.content = ng_code;   //hiển thị NG
+			output.content = ng_code + "_" + decodeResults[0].content;   //hiển thị NG_thongtincode
 		}
 	}
     //Trường hợp không đọc được barcode -> NG
