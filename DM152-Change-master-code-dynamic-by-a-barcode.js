@@ -1,5 +1,5 @@
 //Mã barcode để thay đổi master_code
-const change_master_code = "S00020142";
+const change_master_code = "RESET";
 
 //Event khi Invalid
 const ng_event_output = Event.system.validationFailure;
