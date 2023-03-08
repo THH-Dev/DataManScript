@@ -95,7 +95,11 @@ output.content = "";
 			
 			var spacer = ", ";
 			var center = decodeResults[0].symbology.center.x + spacer + decodeResults[0].symbology.center.y
-			output.content += "\02" + decodeResults[0].content + spacer + center + spacer + angle + "\03";
+			output.content += "\02" + decodeResults[0].content + spacer + center + spacer + angle + "\03\n";
 		}
+	}
+	// Read fail
+	else{
+		output.content += "READ ERROR\n";
 	}
 }
