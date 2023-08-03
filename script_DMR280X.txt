@@ -1,0 +1,60 @@
+// Default script for data formatting
+var min_barcode1 = 0;
+var max_barcode1 = 0;
+
+var min_barcode2 = 0;
+var max_barcode2 = 0;
+
+var min_barcode3 = 0;
+var max_barcode3 = 0;
+
+var width_sensor = 1440;
+
+function onResult (decodeResults, readerProperties, output)
+{	
+	var space = width_sensor / 3 ;
+	
+	min_barcode1 = 0;
+	max_barcode1 = space;
+	
+	min_barcode2 = max_barcode1;
+	max_barcode2 = max_barcode1 + space;
+	
+	min_barcode3 = max_barcode2;
+	max_barcode3 = width_sensor ;
+	
+	var numRet = decodeResults.length;
+	
+	var array_data_code = ["NULL","NULL","NULL"];
+	
+	for(var index = 0; index < numRet; index ++)
+	{
+		if (decodeResults[index].decoded)
+		{
+		var xCenter = decodeResults[index].symbology.center.x;
+			if(xCenter >= min_barcode1 && xCenter < max_barcode1 
+				&& array_data_code[0] == "NULL"){
+				array_data_code[0] = decodeResults[index].content;
+				continue;
+				}
+			else if(xCenter >= min_barcode2 && xCenter < max_barcode2 
+				&& array_data_code[1] == "NULL"){
+				array_data_code[1] = decodeResults[index].content;
+				continue;
+				}
+			else if(xCenter >= min_barcode3 && xCenter < max_barcode3 
+				&& array_data_code[2] == "NULL"){
+				array_data_code[2] = decodeResults[index].content;
+				continue;
+				}
+		}
+		else
+		{
+			continue;
+		}		
+	}
+	
+	output.content = array_data_code[0] + "," + array_data_code[1] +
+		 "," + array_data_code[2];
+}
+
